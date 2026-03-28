@@ -8,9 +8,47 @@
   <body>
     <div id="app">
       <h1>{{titulo}}</h1>
-      <ul>
-        <li v-for=" (item, index) in linguagens">{{ index }} é {{ item.nome }}</li>
-      <ul>
+      <br />
+
+      <label for="">Nome</label>
+      <input type="text" v-model="nome" />
+      <br />
+
+      <label for="">Telefone</label>
+      <input type="text" v-model="telefone" />
+      <br />
+
+      <label for="">Deseja receber nossa novidades?</label>
+      <input type="radio" v-model="novidades" value="sim" />sim
+      <input type="radio" v-model="novidades" value="nao" />nao
+      <br />
+
+      <label for="">Quais esportes prefere?</label>
+      <br />
+      <input type="checkbox" v-model="interesses" value="Futebol" /> Futebol
+      <br />
+      <input type="checkbox" v-model="interesses" value="Basquete" /> Basquete
+      <br />
+      <input type="checkbox" v-model="interesses" value="Volei" /> Volei
+      <br />
+
+      <label for="">Como nos conheceu?</label>
+      <select v-model="conheceu">
+        <option value="Google">Google</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Outro">Outro</option>
+      </select><br>
+
+      <button>Enviar</button><br />
+
+      <div v-if="nome">
+        Nome = {{nome}}<br />
+        Telefone = {{telefone}}<br />
+        Novidades = {{novidades}}<br />
+        Interesses = {{interesses}}<br />
+        Como nos conheceu = {{conheceu}}
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -19,12 +57,12 @@
       var app = new Vue({
         el: "#app",
         data: {
-          titulo: "Titulo Novo",
-          linguagens: [
-            { nome: "javascript" },
-            { nome: "python" },
-            { nome: "java" },
-          ],
+          titulo: "Formulário",
+          nome: "",
+          telefone: "",
+          novidades: "",
+          interesses: [],
+          conheceu: "",
         },
       });
     </script>
