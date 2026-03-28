@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=scri, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Titulo</title>
   </head>
   <body>
     <div id="app">
       <h1>{{titulo}}</h1>
+      <ul>
+        <li v-for=" (item, index) in linguagens">{{ index }} é {{ item.nome }}</li>
+      <ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -17,6 +20,11 @@
         el: "#app",
         data: {
           titulo: "Titulo Novo",
+          linguagens: [
+            { nome: "javascript" },
+            { nome: "python" },
+            { nome: "java" },
+          ],
         },
       });
     </script>
