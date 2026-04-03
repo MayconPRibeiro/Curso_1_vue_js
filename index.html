@@ -10,6 +10,13 @@
       <h1>{{titulo}}</h1>
       <br />
 
+      <img
+        :src="'https://ingresso-a.akamaihd.net/prd/img/movie/devoradores-de-estrelas/07cc713e-78be-44fe-892a-bb74c20caac4.webp'"
+        :alt="'texto'"
+        :style="{width:'30%'}"
+      />
+      <br />
+
       <label for="">Nome</label>
       <input type="text" v-model="nome" />
       <br />
@@ -37,8 +44,8 @@
         <option value="Google">Google</option>
         <option value="Facebook">Facebook</option>
         <option value="Instagram">Instagram</option>
-        <option value="Outro">Outro</option>
-      </select><br>
+        <option value="Outro">Outro</option></select
+      ><br />
 
       <button>Enviar</button><br />
 
