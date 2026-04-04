@@ -14,7 +14,7 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-    <div id="app" :Style="divApp">
+    <div id="app" :style="divApp">
       <h1>{{titulo}}</h1>
       <br />
 
@@ -25,51 +25,53 @@
       />
       <br /><br />
 
-      <label for="">Nome</label>
-      <input type="text" v-model="nome" />
-      <br /><br />
+      <form @submit.prevent="enviar()">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" v-model="nome" />
+        <br /><br />
 
-      <label for="">Telefone</label>
-      <input type="text" v-model="telefone" />
-      <br /><br />
+        <label for="">Telefone</label>
+        <input type="text" v-model="telefone" />
+        <br /><br />
 
-      <label for="">Deseja receber nossa novidades?</label>
-      <input type="radio" v-model="novidades" value="sim" />sim
-      <input type="radio" v-model="novidades" value="nao" />nao <br /><br />
+        <label for="">Deseja receber nossa novidades?</label>
+        <input type="radio" v-model="novidades" value="sim" />sim
+        <input type="radio" v-model="novidades" value="nao" />nao <br /><br />
 
-      <label for="">Quais esportes prefere?</label>
+        <label for="">Quais esportes prefere?</label>
+        <br />
+        <input type="checkbox" v-model="interesses" value="Futebol" /> Futebol
+        <br />
+        <input type="checkbox" v-model="interesses" value="Basquete" /> Basquete
+        <br />
+        <input type="checkbox" v-model="interesses" value="Volei" /> Volei
+        <br /><br />
+
+        <label for="">Como nos conheceu?</label>
+        <select v-model="conheceu">
+          <option value="Google">Google</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Outro">Outro</option></select
+        ><br /><br />
+
+        <button
+          type="button"
+          :class="btnClassLimpar"
+          :style="btnStyleEnviarLimpar"
+          @click="limpar()"
+        >
+          Limpar
+        </button>
+        <button
+          type="submit"
+          :class="btnClassEnviar"
+          :style="btnStyleEnviarLimpar"
+        >
+          Enviar
+        </button>
+      </form>
       <br />
-      <input type="checkbox" v-model="interesses" value="Futebol" /> Futebol
-      <br />
-      <input type="checkbox" v-model="interesses" value="Basquete" /> Basquete
-      <br />
-      <input type="checkbox" v-model="interesses" value="Volei" /> Volei
-      <br /><br />
-
-      <label for="">Como nos conheceu?</label>
-      <select v-model="conheceu">
-        <option value="Google">Google</option>
-        <option value="Facebook">Facebook</option>
-        <option value="Instagram">Instagram</option>
-        <option value="Outro">Outro</option></select
-      ><br /><br />
-
-      <button
-        type="button"
-        v-bind:class="btnClassLimpar"
-        :style="btnStyleEnviarLimpar"
-        v-on:click="limpar()"
-      >
-        Limpar
-      </button>
-      <button
-        type="button"
-        v-bind:class="btnClassEnviar"
-        :style="btnStyleEnviarLimpar"
-        v-on:click="enviar()"
-      >
-        Enviar
-      </button>
 
       <div v-if="nome">
         Nome = {{nome}}<br />
@@ -118,7 +120,7 @@
             this.novidades = "";
             this.interesses = [];
             this.conheceu = "";
-          },
+          }, // funcção limpar todos os dados do formulário
         },
       });
     </script>
