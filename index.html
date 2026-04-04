@@ -14,7 +14,7 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-    <div id="app">
+    <div id="app" :Style="divApp">
       <h1>{{titulo}}</h1>
       <br />
 
@@ -23,20 +23,19 @@
         :alt="'texto'"
         :style="{width:'30%'}"
       />
-      <br />
+      <br /><br />
 
       <label for="">Nome</label>
       <input type="text" v-model="nome" />
-      <br />
+      <br /><br />
 
       <label for="">Telefone</label>
       <input type="text" v-model="telefone" />
-      <br />
+      <br /><br />
 
       <label for="">Deseja receber nossa novidades?</label>
       <input type="radio" v-model="novidades" value="sim" />sim
-      <input type="radio" v-model="novidades" value="nao" />nao
-      <br />
+      <input type="radio" v-model="novidades" value="nao" />nao <br /><br />
 
       <label for="">Quais esportes prefere?</label>
       <br />
@@ -45,7 +44,7 @@
       <input type="checkbox" v-model="interesses" value="Basquete" /> Basquete
       <br />
       <input type="checkbox" v-model="interesses" value="Volei" /> Volei
-      <br />
+      <br /><br />
 
       <label for="">Como nos conheceu?</label>
       <select v-model="conheceu">
@@ -53,10 +52,24 @@
         <option value="Facebook">Facebook</option>
         <option value="Instagram">Instagram</option>
         <option value="Outro">Outro</option></select
-      ><br />
+      ><br /><br />
 
-      <button type="button" v-bind:class="btnClassLimpar">Limpar</button>
-      <button type="button" v-bind:class="btnClassEnviar">Enviar</button>
+      <button
+        type="button"
+        v-bind:class="btnClassLimpar"
+        :style="btnStyleEnviarLimpar"
+        v-on:click="limpar()"
+      >
+        Limpar
+      </button>
+      <button
+        type="button"
+        v-bind:class="btnClassEnviar"
+        :style="btnStyleEnviarLimpar"
+        v-on:click="enviar()"
+      >
+        Enviar
+      </button>
 
       <div v-if="nome">
         Nome = {{nome}}<br />
@@ -77,11 +90,35 @@
           novidades: "",
           interesses: [],
           conheceu: "",
+
           btnClassEnviar: {
             btn: true,
             "btn-outline-primary": true,
           }, //fim do objeto btnClasseEnviar - Foi utilizado como objeto
+
           btnClassLimpar: ["btn", "btn-outline-danger"], // Fim do objeto btnClasseLimpar - Foi utilizado como array
+
+          btnStyleEnviarLimpar: {
+            "font-size": "15px",
+            "font-weight": "bold",
+          }, //fim do style para btnStyleEnviarLimpar
+
+          divApp: {
+            "text-align": "center",
+          }, //fim do style para divApp
+        },
+
+        methods: {
+          enviar() {
+            alert("Enviado com sucesso");
+          }, //funçaõ enviar
+          limpar() {
+            this.nome = "";
+            this.telefone = "";
+            this.novidades = "";
+            this.interesses = [];
+            this.conheceu = "";
+          },
         },
       });
     </script>
