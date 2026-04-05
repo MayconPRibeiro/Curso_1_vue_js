@@ -27,11 +27,11 @@
 
       <form @submit.prevent="enviar()">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" v-model="nome" />
+        <input id="nome" type="text" placeholder="Digite seu nome" v-model="nome" />
         <br /><br />
 
         <label for="telefone">Telefone</label>
-        <input id="telefone" type="text" v-model="telefone" />
+        <input id="telefone" type="number" placeholder="11 999999999" v-model="telefone" />
         <br /><br />
 
         <label for="">Deseja receber nossa novidades?</label>
@@ -47,8 +47,8 @@
         <input type="checkbox" v-model="interesses" value="Volei" /> Volei
         <br /><br />
 
-        <label for="">Como nos conheceu?</label>
-        <select v-model="conheceu">
+        <label for="conheceu">Como nos conheceu?</label>
+        <select id="conheceu" v-model="conheceu">
           <option value="Google">Google</option>
           <option value="Facebook">Facebook</option>
           <option value="Instagram">Instagram</option>
@@ -80,6 +80,14 @@
         Interesses = {{interesses}}<br />
         Como nos conheceu = {{conheceu}}
       </div>
+
+      <div :style="listaStyleUsuarios">
+        <ul>
+          <li v-for="usuario in usuarios">
+            {{ usuario.nome | toUpperCase() | primeiroNome}}
+          </li>
+        </ul>
+      </div>
     </div>
 
     <script>
@@ -92,6 +100,16 @@
           novidades: "",
           interesses: [],
           conheceu: "",
+
+          usuarios: [
+            { nome: "João Alves" },
+            { nome: "Maria dos santos" },
+            { nome: "João José da silva" },
+          ],
+
+          listaStyleUsuarios: {
+            "text-align": "left",
+          },
 
           btnClassEnviar: {
             btn: true,
@@ -120,7 +138,17 @@
             this.novidades = "";
             this.interesses = [];
             this.conheceu = "";
-          }, // funcção limpar todos os dados do formulário
+          }, // função limpar todos os dados do formulário
+        }, //Fim methods
+
+        filters: {
+          toUpperCase(str) {
+            return str.toUpperCase();
+          },
+
+          primeiroNome(str) {
+            return str.split(" ")[0];
+          },
         },
       });
     </script>
