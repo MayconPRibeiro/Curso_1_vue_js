@@ -27,28 +27,83 @@
 
       <form @submit.prevent="enviar()">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" placeholder="Digite seu nome" v-model="nome" />
+        <input
+          id="nome"
+          type="text"
+          placeholder="Digite seu nome"
+          v-model="nome"
+          required
+        />
         <br /><br />
 
         <label for="telefone">Telefone</label>
-        <input id="telefone" type="number" placeholder="11 999999999" v-model="telefone" />
+        <input
+          id="telefone"
+          type="tel"
+          placeholder="11 999999999"
+          v-model="telefone"
+          pattern="[0-9]{2} [0-9]{9}"
+          title="Digite o DDD e o telefone - exemplo: 11 999999999"
+          required
+        />
         <br /><br />
 
-        <label for="">Deseja receber nossa novidades?</label>
-        <input type="radio" v-model="novidades" value="sim" />sim
-        <input type="radio" v-model="novidades" value="nao" />nao <br /><br />
+        <fieldset>
+          <label>Deseja receber nossa novidades?</label>
 
-        <label for="">Quais esportes prefere?</label>
-        <br />
-        <input type="checkbox" v-model="interesses" value="Futebol" /> Futebol
-        <br />
-        <input type="checkbox" v-model="interesses" value="Basquete" /> Basquete
-        <br />
-        <input type="checkbox" v-model="interesses" value="Volei" /> Volei
-        <br /><br />
+          <input
+            id="sim"
+            type="radio"
+            v-model="novidades"
+            value="sim"
+            name="news"
+            required
+          />
+          <label for="sim">SIM</label>
+
+          <input
+            id="nao"
+            type="radio"
+            v-model="novidades"
+            value="nao"
+            name="news"
+          />
+          <label for="nao">NÃO</label>
+          <br /><br />
+        </fieldset>
+
+        <fieldset>
+          <label>Quais esportes prefere?</label>
+          <br />
+          <input
+            id="futebol"
+            type="checkbox"
+            v-model="interesses"
+            value="Futebol"
+          />
+          <label for="futebol">Futebol</label>
+          <br />
+          <input
+            id="basquete"
+            type="checkbox"
+            v-model="interesses"
+            value="Basquete"
+          />
+          <label for="basquete">Basquete</label>
+          <br />
+          <input
+            id="volei"
+            type="checkbox"
+            v-model="interesses"
+            value="Volei"
+          />
+          <label for="volei">Volei</label>
+          <br /><br />
+        </fieldset>
 
         <label for="conheceu">Como nos conheceu?</label>
         <select id="conheceu" v-model="conheceu">
+          <option value="">Selecione</option>
           <option value="Google">Google</option>
           <option value="Facebook">Facebook</option>
           <option value="Instagram">Instagram</option>
