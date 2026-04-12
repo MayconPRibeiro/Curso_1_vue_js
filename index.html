@@ -143,6 +143,9 @@
           </li>
         </ul>
       </div>
+
+      <!-- Usando computed para formatar nomes-->
+      <div v-for="nome in nomeFormatado">{{ nome }}</div>
     </div>
 
     <script>
@@ -159,7 +162,7 @@
           usuarios: [
             { nome: "João Alves" },
             { nome: "Maria dos santos" },
-            { nome: "João José da silva" },
+            { nome: "João", sobrenome: "Silva" },
           ],
 
           listaStyleUsuarios: {
@@ -203,6 +206,27 @@
 
           primeiroNome(str) {
             return str.split(" ")[0];
+          },
+        },
+
+        //computed cria um novo dado baseado em outros dados, como um nome completo
+        computed: {
+          nomeFormatado() {
+            //map percorrendo array usuario
+            return this.usuarios.map((usuario) => {
+              if (usuario.sobrenome && usuario.sobrenome.length > 0) {
+                return usuario.nome + " " + usuario.sobrenome;
+              }
+              return usuario.nome;
+            });
+          },
+        },
+
+        //watch realiza uma ação quando a variavel é alterada
+        watch: {
+          //demonstra no console valor atual e antigo quando a variavel nomeFomatado for alterado
+          nomeFormatado(newValue, oldValue) {
+            console.log(newValue, oldValue);
           },
         },
       });
