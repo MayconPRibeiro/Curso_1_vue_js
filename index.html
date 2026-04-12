@@ -229,6 +229,22 @@
             console.log(newValue, oldValue);
           },
         },
+
+
+        //lifecycle hooks
+        beforeCreate(){
+          console.log('Antes de criar o componente')
+        },
+        created(){
+          console.log('Componente criado')
+        },
+        beforeMount(){
+          console.log('Antes de montar o componente')
+        },
+        mounted(){
+          console.log('Componente montado')
+        },
+
       });
     </script>
   </body>
