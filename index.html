@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=scri, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Titulo</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -12,7 +12,8 @@
     />
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
 
     <div id="app" :style="divApp">
       <h1>{{titulo}}</h1>
@@ -146,9 +147,32 @@
 
       <!-- Usando computed para formatar nomes-->
       <div v-for="nome in nomeFormatado">{{ nome }}</div>
+      <br />
+
+      <!--Chamando meu componente-->
+      <meu-componente></meu-componente>
     </div>
 
+    <!-- Template para o componente 'meu-componente' -->
+    <template id="teste-componente">
+      <div>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </div>
+    </template>
+
     <script>
+      //ativando manualmente o devtools do Vue
+      Vue.config.devtools = true;
+
+      //criando componente reutilizavel
+      Vue.component("meu-componente", {
+        template: "#teste-componente",
+      });
+
       var app = new Vue({
         el: "#app",
         data: {
@@ -230,21 +254,19 @@
           },
         },
 
-
         //lifecycle hooks
-        beforeCreate(){
-          console.log('Antes de criar o componente')
+        beforeCreate() {
+          console.log("Antes de criar o componente");
         },
-        created(){
-          console.log('Componente criado')
+        created() {
+          console.log("Componente criado");
         },
-        beforeMount(){
-          console.log('Antes de montar o componente')
+        beforeMount() {
+          console.log("Antes de montar o componente");
         },
-        mounted(){
-          console.log('Componente montado')
+        mounted() {
+          console.log("Componente montado");
         },
-
       });
     </script>
   </body>
