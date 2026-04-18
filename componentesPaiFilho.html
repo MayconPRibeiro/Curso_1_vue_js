@@ -9,9 +9,16 @@
 
     <div id="app">
       <h1>{{ titulo }}</h1>
+
+      <meu-filho :titulo="titulo"></meu-filho>
     </div>
 
     <script>
+      Vue.component('meu-filho', {
+        props: ['titulo'], // Recebe o dado do pai
+        template: '<div><h2>Filho: {{ titulo }}</h2></div>'
+      });
+
       var app = new Vue({
         el: "#app",
         data: {
