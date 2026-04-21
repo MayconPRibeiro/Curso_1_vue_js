@@ -10,19 +10,20 @@
     <div id="app">
       <h1>{{ titulo }}</h1>
 
-      <meu-filho :titulo="titulo"></meu-filho>
+      <meu-filho :titulo2="titulo2"></meu-filho>
     </div>
 
     <script>
-      Vue.component('meu-filho', {
-        props: ['titulo'], // Recebe o dado do pai
-        template: '<div><h2>Filho: {{ titulo }}</h2></div>'
+      Vue.component("meu-filho", {
+        props: ["titulo2"], // Recebe o dado do pai
+        template: "<div><h2>Filho: {{ titulo2 }}</h2></div>",
       });
 
       var app = new Vue({
         el: "#app",
         data: {
           titulo: "Treinar Componente Pai e filho",
+          titulo2: "props",
         },
       });
     </script>
