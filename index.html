@@ -115,7 +115,7 @@
           type="button"
           :class="btnClassLimpar"
           :style="btnStyleEnviarLimpar"
-          @click="limpar()"
+          @click.stop.prevent="limpar()"
         >
           Limpar
         </button>
@@ -151,6 +151,13 @@
 
       <!--Chamando meu componente-->
       <meu-componente></meu-componente>
+
+      <div>
+        <meu-card>
+          <h1 slot="title">titulo maneiro</h1>
+          <p slot="text">texto maneiro</p>
+        </meu-card>
+      </div>
     </div>
 
     <!-- Template para o componente 'meu-componente' -->
@@ -164,6 +171,13 @@
       </div>
     </template>
 
+    <template id="meu-card">
+      <div>
+        <slot name="text"></slot>
+        <slot name="title"></slot>
+      </div>
+    </template>
+
     <script>
       //ativando manualmente o devtools do Vue
       Vue.config.devtools = true;
@@ -171,6 +185,16 @@
       //criando componente reutilizavel
       Vue.component("meu-componente", {
         template: "#teste-componente",
+      });
+
+      Vue.component("meu-card", {
+        template: "#meu-card",
+        data() {
+          return {
+            title: "Card teste",
+            text: "Texto do card",
+          };
+        },
       });
 
       var app = new Vue({

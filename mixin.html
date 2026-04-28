@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click.stop.prevent="get_users()">Buscar Usuários</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+      var mixin = {
+        methods: {
+          get_users() {
+            console.log("get users funcionando");
+          },
+        },
+      };
+
+      var app = new Vue({
+        el: "#app",
+
+        mixins: [mixin],
+
+        data: {
+          titulo: "Vue js",
+        },
+      });
+    </script>
+  </body>
+</html>
