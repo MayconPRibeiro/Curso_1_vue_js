@@ -16,12 +16,23 @@
           <li v-for="user in users">{{ user.name }}</li>
         </ul>
       </div>
+
+      <transformers></transformers>
     </div>
+
+    <template id="template-transformers">
+      <div>
+        <h2>Lista de Transformers</h2>
+        <ul>
+          <li v-for="(user, index) in users" :key="index">{{ user.name }}</li>
+        </ul>
+      </div>
+    </template>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
-    <!--Chamando vue resource para requisições ajax-->
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+    <!-- Chamando vue resource para requisições ajax
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script> -->
 
     <!--Chamando axios para requisições ajax-->
     <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
@@ -48,6 +59,25 @@
           },
         },
       };
+
+      Vue.component("transformers", {
+        template: "#template-transformers",
+        data() {
+          return {
+            users: [
+              {
+                name: "camaro",
+              },
+              {
+                name: "fiat",
+              },
+              {
+                name: "ford",
+              },
+            ],
+          };
+        },
+      });
 
       var app = new Vue({
         el: "#app",
